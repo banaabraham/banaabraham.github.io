@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bana & Davita Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #9CAF88 0%, #A8B89A 25%, #B5C4A7 50%, #C2D0B4 75%, #E8F5E8 100%);
+            background: linear-gradient(135deg, #2a4d3a 0%, #3e5d4e 20%, #9CAF88 40%, #A8B89A 60%, #B5C4A7 80%, #E8F5E8 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,6 +22,554 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="rgba(156,175,136,0.5)"/><circle cx="10" cy="10" r="2" fill="rgba(156,175,136,1)"/></svg>'), auto;
+        }
+
+        /* Complex layered background */
+        .background-layers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .mountain-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(74, 90, 58, 0.6), transparent);
+            clip-path: polygon(0 100%, 15% 60%, 35% 70%, 50% 40%, 65% 65%, 80% 45%, 100% 80%, 100% 100%);
+            animation: parallaxSlow 20s infinite linear;
+        }
+
+        .tree-layer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            opacity: 0.4;
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 0;
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(to top, #4a5a3a, #6b7b5a);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: treeSwayGentle 8s infinite ease-in-out;
+        }
+
+        .tree:before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 40px;
+            background: #3a4a2a;
+            border-radius: 4px;
+        }
+
+        .tree:nth-child(1) { left: 5%; animation-delay: 0s; transform: scale(0.8); }
+        .tree:nth-child(2) { left: 15%; animation-delay: 1s; transform: scale(1.2); }
+        .tree:nth-child(3) { left: 75%; animation-delay: 2s; transform: scale(0.9); }
+        .tree:nth-child(4) { left: 85%; animation-delay: 3s; transform: scale(1.1); }
+        .tree:nth-child(5) { left: 95%; animation-delay: 4s; transform: scale(0.7); }
+
+        @keyframes treeSwayGentle {
+            0%, 100% { transform: rotate(0deg) scale(var(--tree-scale, 1)); }
+            25% { transform: rotate(1deg) scale(var(--tree-scale, 1)); }
+            75% { transform: rotate(-1deg) scale(var(--tree-scale, 1)); }
+        }
+
+        @keyframes parallaxSlow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50px); }
+        }
+
+        /* Floating creatures */
+        .floating-creatures {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .creature {
+            position: absolute;
+            font-size: 24px;
+            animation: creatureFly 15s infinite ease-in-out;
+            opacity: 0.8;
+        }
+
+        .creature:nth-child(1) { 
+            left: 10%; 
+            top: 20%; 
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+        .creature:nth-child(2) { 
+            left: 80%; 
+            top: 30%; 
+            animation-delay: 3s;
+            animation-duration: 18s;
+        }
+        .creature:nth-child(3) { 
+            left: 60%; 
+            top: 15%; 
+            animation-delay: 6s;
+            animation-duration: 14s;
+        }
+        .creature:nth-child(4) { 
+            left: 30%; 
+            top: 40%; 
+            animation-delay: 9s;
+            animation-duration: 16s;
+        }
+
+        @keyframes creatureFly {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0.6; }
+            25% { transform: translateX(100px) translateY(-20px) rotate(5deg); opacity: 0.8; }
+            50% { transform: translateX(200px) translateY(10px) rotate(-3deg); opacity: 1; }
+            75% { transform: translateX(150px) translateY(-30px) rotate(8deg); opacity: 0.7; }
+            100% { transform: translateX(300px) translateY(0) rotate(0deg); opacity: 0.4; }
+        }
+
+        /* Magical sparkles */
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(156, 175, 136, 0.6));
+            border-radius: 50%;
+            animation: sparkleFloat 6s infinite ease-in-out;
+        }
+
+        .sparkle:nth-child(odd) {
+            animation-direction: alternate;
+        }
+
+        .sparkle:nth-child(1) { left: 20%; top: 25%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { left: 70%; top: 35%; animation-delay: 1s; }
+        .sparkle:nth-child(3) { left: 40%; top: 20%; animation-delay: 2s; }
+        .sparkle:nth-child(4) { left: 80%; top: 60%; animation-delay: 3s; }
+        .sparkle:nth-child(5) { left: 10%; top: 70%; animation-delay: 4s; }
+        .sparkle:nth-child(6) { left: 60%; top: 80%; animation-delay: 5s; }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-20px) scale(1.5); opacity: 1; }
+        }
+
+        /* Clouds */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            animation: cloudDrift 25s infinite linear;
+        }
+
+        .cloud:before {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+        }
+
+        .cloud:after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+        }
+
+        .cloud:nth-child(1) {
+            width: 80px;
+            height: 40px;
+            top: 20%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .cloud:nth-child(1):before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud:nth-child(1):after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud:nth-child(2) {
+            width: 100px;
+            height: 50px;
+            top: 10%;
+            left: -150px;
+            animation-delay: 8s;
+        }
+
+        .cloud:nth-child(2):before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+
+        .cloud:nth-child(2):after {
+            width: 70px;
+            height: 50px;
+            top: -20px;
+            right: 15px;
+        }
+
+        @keyframes cloudDrift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        /* Animated grass field */
+        .grass-field {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .grass-blade {
+            position: absolute;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to top, #4a5a3a, #6b7b5a, #8a9a7a);
+            border-radius: 50% 50% 0 0;
+            transform-origin: bottom center;
+            animation: grassSway 4s ease-in-out infinite;
+        }
+
+        .grass-blade:nth-child(odd) { animation-direction: alternate; }
+        .grass-blade:nth-child(even) { animation-delay: 0.5s; }
+
+        @keyframes grassSway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+
+        /* Animated flowers */
+        .flower-field {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 20px;
+            font-size: 16px;
+            animation: flowerBob 6s ease-in-out infinite;
+        }
+
+        .flower:nth-child(1) { left: 5%; color: #ff6b9d; animation-delay: 0s; }
+        .flower:nth-child(2) { left: 15%; color: #feca57; animation-delay: 1s; }
+        .flower:nth-child(3) { left: 25%; color: #ff9ff3; animation-delay: 2s; }
+        .flower:nth-child(4) { left: 75%; color: #54a0ff; animation-delay: 3s; }
+        .flower:nth-child(5) { left: 85%; color: #5f27cd; animation-delay: 4s; }
+        .flower:nth-child(6) { left: 95%; color: #00d2d3; animation-delay: 5s; }
+
+        @keyframes flowerBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        /* Flowing water/river */
+        .river {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(90deg, 
+                rgba(64, 162, 216, 0.3) 0%, 
+                rgba(101, 181, 230, 0.4) 25%, 
+                rgba(64, 162, 216, 0.3) 50%, 
+                rgba(101, 181, 230, 0.4) 75%, 
+                rgba(64, 162, 216, 0.3) 100%);
+            animation: waterFlow 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .river::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.2) 25%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.2) 75%, 
+                transparent 100%);
+            animation: waterSparkle 2s linear infinite;
+        }
+
+        @keyframes waterFlow {
+            0%, 100% { background-position: 0 0; }
+            50% { background-position: 100px 0; }
+        }
+
+        @keyframes waterSparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Floating leaves and petals */
+        .falling-nature {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .falling-leaf {
+            position: absolute;
+            font-size: 20px;
+            animation: leafFall 8s linear infinite;
+        }
+
+        .falling-petal {
+            position: absolute;
+            font-size: 12px;
+            animation: petalFall 6s linear infinite;
+        }
+
+        .falling-leaf:nth-child(1) { left: 10%; animation-delay: 0s; color: #8a9a7a; }
+        .falling-leaf:nth-child(2) { left: 30%; animation-delay: 2s; color: #9CAF88; }
+        .falling-leaf:nth-child(3) { left: 50%; animation-delay: 4s; color: #A8B89A; }
+        .falling-leaf:nth-child(4) { left: 70%; animation-delay: 6s; color: #6b7b5a; }
+        .falling-leaf:nth-child(5) { left: 90%; animation-delay: 8s; color: #B5C4A7; }
+
+        .falling-petal:nth-child(6) { left: 15%; animation-delay: 1s; color: #ff6b9d; }
+        .falling-petal:nth-child(7) { left: 35%; animation-delay: 3s; color: #feca57; }
+        .falling-petal:nth-child(8) { left: 55%; animation-delay: 5s; color: #ff9ff3; }
+        .falling-petal:nth-child(9) { left: 75%; animation-delay: 7s; color: #54a0ff; }
+        .falling-petal:nth-child(10) { left: 95%; animation-delay: 9s; color: #5f27cd; }
+
+        @keyframes leafFall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(calc(100vh + 100px)) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        @keyframes petalFall {
+            0% { 
+                transform: translateY(-50px) rotate(0deg) translateX(0); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(calc(100vh + 50px)) rotate(720deg) translateX(50px); 
+                opacity: 0; 
+            }
+        }
+
+        /* Animated sky elements */
+        .sky-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sun {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #feca57, #ff9ff3);
+            border-radius: 50%;
+            animation: sunGlow 4s ease-in-out infinite;
+        }
+
+        .sun::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(254, 202, 87, 0.3), transparent);
+            border-radius: 50%;
+            animation: sunHalo 3s ease-in-out infinite;
+        }
+
+        @keyframes sunGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes sunHalo {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+        }
+
+        .star {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+
+        .star:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 25%; left: 60%; animation-delay: 0.5s; }
+        .star:nth-child(3) { top: 35%; left: 80%; animation-delay: 1s; }
+        .star:nth-child(4) { top: 10%; left: 40%; animation-delay: 1.5s; }
+        .star:nth-child(5) { top: 20%; left: 90%; animation-delay: 2s; }
+
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Gentle rain effect */
+        .rain-drops {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .rain-drop {
+            position: absolute;
+            width: 2px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(101, 181, 230, 0.6));
+            animation: rainFall 1s linear infinite;
+        }
+
+        .rain-drop:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .rain-drop:nth-child(2) { left: 15%; animation-delay: 0.2s; }
+        .rain-drop:nth-child(3) { left: 25%; animation-delay: 0.4s; }
+        .rain-drop:nth-child(4) { left: 35%; animation-delay: 0.6s; }
+        .rain-drop:nth-child(5) { left: 45%; animation-delay: 0.8s; }
+        .rain-drop:nth-child(6) { left: 55%; animation-delay: 1s; }
+        .rain-drop:nth-child(7) { left: 65%; animation-delay: 1.2s; }
+        .rain-drop:nth-child(8) { left: 75%; animation-delay: 1.4s; }
+        .rain-drop:nth-child(9) { left: 85%; animation-delay: 1.6s; }
+        .rain-drop:nth-child(10) { left: 95%; animation-delay: 1.8s; }
+
+        @keyframes rainFall {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Wind patterns */
+        .wind-patterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .wind-gust {
+            position: absolute;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(156, 175, 136, 0.2), 
+                rgba(156, 175, 136, 0.4), 
+                rgba(156, 175, 136, 0.2), 
+                transparent);
+            animation: windGust 6s ease-in-out infinite;
+        }
+
+        .wind-gust:nth-child(1) { top: 30%; animation-delay: 0s; }
+        .wind-gust:nth-child(2) { top: 50%; animation-delay: 2s; }
+        .wind-gust:nth-child(3) { top: 70%; animation-delay: 4s; }
+
+        @keyframes windGust {
+            0% { transform: translateX(-200px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(calc(100vw + 200px)); opacity: 0; }
         }
 
         /* Floating particles for Ghibli magic */
@@ -63,30 +611,93 @@
         /* Main invitation card */
         .invitation-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 60px 40px;
-            max-width: 600px;
+            border-radius: 30px;
+            padding: 80px 50px;
+            max-width: 700px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(156, 175, 136, 0.3);
-            border: 2px solid rgba(156, 175, 136, 0.2);
+            box-shadow: 
+                0 30px 60px rgba(156, 175, 136, 0.4),
+                0 15px 30px rgba(156, 175, 136, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 0 rgba(156, 175, 136, 0.1);
+            border: 3px solid rgba(156, 175, 136, 0.3);
             position: relative;
             z-index: 2;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            transition: all 0.5s ease;
+            transform: translateY(0);
+        }
+
+        .invitation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 40px 80px rgba(156, 175, 136, 0.5),
+                0 20px 40px rgba(156, 175, 136, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(156, 175, 136, 0.2);
         }
 
         .invitation-card::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #9CAF88, #A8B89A, #B5C4A7, #C2D0B4);
-            border-radius: 25px;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #9CAF88, #A8B89A, #B5C4A7, #C2D0B4, #9CAF88);
+            border-radius: 40px;
             z-index: -1;
-            filter: blur(15px);
-            opacity: 0.3;
+            filter: blur(20px);
+            opacity: 0.4;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        .invitation-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 70%);
+            border-radius: 30px;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+
+        /* Ornate border decorations */
+        .invitation-card .corner-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(156, 175, 136, 0.3), transparent);
+            border-radius: 50%;
+        }
+
+        .invitation-card .corner-decoration::before {
+            content: '✧';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: rgba(156, 175, 136, 0.8);
+            animation: rotate 4s linear infinite;
+        }
+
+        .corner-decoration.top-left { top: -20px; left: -20px; }
+        .corner-decoration.top-right { top: -20px; right: -20px; }
+        .corner-decoration.bottom-left { bottom: -20px; left: -20px; }
+        .corner-decoration.bottom-right { bottom: -20px; right: -20px; }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         /* Header with decorative elements */
@@ -96,11 +707,13 @@
         }
 
         .decorative-line {
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #9CAF88, transparent);
-            margin: 20px auto;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #9CAF88, #A8B89A, #9CAF88, transparent);
+            margin: 30px auto;
             position: relative;
+            border-radius: 2px;
+            animation: lineGlow 2s ease-in-out infinite;
         }
 
         .decorative-line::before,
@@ -108,16 +721,69 @@
             content: '❀';
             position: absolute;
             color: #9CAF88;
-            font-size: 16px;
-            top: -8px;
+            font-size: 20px;
+            top: -10px;
+            animation: flowerPulse 3s ease-in-out infinite;
         }
 
         .decorative-line::before {
-            left: -15px;
+            left: -20px;
+            animation-delay: 0s;
         }
 
         .decorative-line::after {
-            right: -15px;
+            right: -20px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes lineGlow {
+            0%, 100% { opacity: 0.8; transform: scaleX(1); }
+            50% { opacity: 1; transform: scaleX(1.1); }
+        }
+
+        @keyframes flowerPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Elaborate decorative vine */
+        .vine-decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .vine-decoration::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,50 Q30,20 50,50 Q70,80 90,50" stroke="rgba(156,175,136,0.3)" stroke-width="2" fill="none"/><circle cx="25" cy="35" r="3" fill="rgba(156,175,136,0.4)"/><circle cx="75" cy="65" r="3" fill="rgba(156,175,136,0.4)"/></svg>') no-repeat;
+            background-size: contain;
+            opacity: 0.6;
+            animation: vineGrow 4s ease-in-out infinite;
+        }
+
+        .vine-decoration::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M90,50 Q70,80 50,50 Q30,20 10,50" stroke="rgba(156,175,136,0.3)" stroke-width="2" fill="none"/><circle cx="75" cy="65" r="3" fill="rgba(156,175,136,0.4)"/><circle cx="25" cy="35" r="3" fill="rgba(156,175,136,0.4)"/></svg>') no-repeat;
+            background-size: contain;
+            opacity: 0.6;
+            animation: vineGrow 4s ease-in-out infinite 2s;
+        }
+
+        @keyframes vineGrow {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+            50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
         }
 
         .invitation-text {
@@ -131,47 +797,205 @@
         /* Names styling */
         .names {
             font-family: 'Dancing Script', cursive;
-            font-size: 48px;
+            font-size: 56px;
             color: #4A5A3A;
-            margin: 30px 0;
+            margin: 40px 0;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(156, 175, 136, 0.3);
+            text-shadow: 
+                2px 2px 4px rgba(156, 175, 136, 0.3),
+                0 0 20px rgba(156, 175, 136, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .names:hover {
+            transform: scale(1.05);
+            text-shadow: 
+                3px 3px 6px rgba(156, 175, 136, 0.4),
+                0 0 30px rgba(156, 175, 136, 0.3);
+        }
+
+        .names::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -20px;
+            right: -20px;
+            bottom: -10px;
+            background: radial-gradient(ellipse, rgba(156, 175, 136, 0.1), transparent);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .names:hover::before {
+            opacity: 1;
+        }
+
+        .name-individual {
+            display: inline-block;
+            animation: nameFloat 6s ease-in-out infinite;
+        }
+
+        .name-individual:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .name-individual:nth-child(3) {
+            animation-delay: 3s;
+        }
+
+        @keyframes nameFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .ampersand {
-            font-size: 36px;
+            font-size: 42px;
             color: #9CAF88;
-            margin: 0 15px;
+            margin: 0 20px;
             font-weight: 400;
+            display: inline-block;
+            animation: ampersandSpin 8s linear infinite;
+            text-shadow: 0 0 15px rgba(156, 175, 136, 0.5);
+        }
+
+        @keyframes ampersandSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Wedding details */
         .wedding-details {
-            margin: 40px 0;
-            padding: 30px;
-            background: rgba(156, 175, 136, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(156, 175, 136, 0.2);
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(156, 175, 136, 0.15), rgba(168, 184, 154, 0.1));
+            border-radius: 25px;
+            border: 2px solid rgba(156, 175, 136, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .wedding-details:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(156, 175, 136, 0.2);
+        }
+
+        .wedding-details::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(156, 175, 136, 0.1), transparent);
+            animation: shimmerDetails 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmerDetails {
+            0%, 100% { transform: rotate(0deg); opacity: 0.3; }
+            50% { transform: rotate(180deg); opacity: 0.6; }
         }
 
         .date {
-            font-size: 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
             color: #4A5A3A;
-            margin-bottom: 15px;
-            font-weight: 500;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(156, 175, 136, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .venue {
-            font-size: 20px;
+            font-size: 24px;
             color: #6B7B5A;
-            margin-bottom: 10px;
-            font-weight: 400;
+            margin-bottom: 15px;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         .location {
-            font-size: 18px;
+            font-size: 20px;
             color: #8A9A7A;
             font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Music player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #9CAF88, #A8B89A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(156, 175, 136, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .music-player:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(156, 175, 136, 0.4);
+        }
+
+        .music-player::before {
+            content: '♪';
+            font-size: 24px;
+            color: white;
+            animation: musicNote 2s ease-in-out infinite;
+        }
+
+        .music-player.playing::before {
+            animation: musicNotePlaying 1s ease-in-out infinite;
+        }
+
+        @keyframes musicNote {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes musicNotePlaying {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+        }
+
+        /* Interactive elements */
+        .interactive-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            animation: heartFloat 8s ease-in-out infinite;
+            font-size: 20px;
+            color: rgba(156, 175, 136, 0.7);
+        }
+
+        .floating-heart:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-heart:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+        .floating-heart:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
+        .floating-heart:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 6s; }
+
+        @keyframes heartFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
         }
 
         /* Ghibli-inspired decorative elements */
@@ -300,6 +1124,105 @@
     </style>
 </head>
 <body>
+    <!-- Sky elements -->
+    <div class="sky-elements">
+        <div class="sun"></div>
+        <div class="stars">
+            <div class="star">✦</div>
+            <div class="star">✧</div>
+            <div class="star">✦</div>
+            <div class="star">✧</div>
+            <div class="star">✦</div>
+        </div>
+    </div>
+
+    <!-- Background layers -->
+    <div class="background-layers">
+        <div class="mountain-layer"></div>
+        <div class="tree-layer">
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+        </div>
+    </div>
+
+    <!-- River -->
+    <div class="river"></div>
+
+    <!-- Grass field -->
+    <div class="grass-field"></div>
+
+    <!-- Flower field -->
+    <div class="flower-field">
+        <div class="flower">🌸</div>
+        <div class="flower">🌻</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌼</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌹</div>
+    </div>
+
+    <!-- Falling nature elements -->
+    <div class="falling-nature">
+        <div class="falling-leaf">🍃</div>
+        <div class="falling-leaf">🍂</div>
+        <div class="falling-leaf">🍃</div>
+        <div class="falling-leaf">🍂</div>
+        <div class="falling-leaf">🍃</div>
+        <div class="falling-petal">🌸</div>
+        <div class="falling-petal">🌺</div>
+        <div class="falling-petal">🌼</div>
+        <div class="falling-petal">🌷</div>
+        <div class="falling-petal">🌹</div>
+    </div>
+
+    <!-- Rain drops -->
+    <div class="rain-drops">
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+        <div class="rain-drop"></div>
+    </div>
+
+    <!-- Wind patterns -->
+    <div class="wind-patterns">
+        <div class="wind-gust"></div>
+        <div class="wind-gust"></div>
+        <div class="wind-gust"></div>
+    </div>
+
+    <!-- Floating creatures -->
+    <div class="floating-creatures">
+        <div class="creature">🦋</div>
+        <div class="creature">🕊️</div>
+        <div class="creature">🦋</div>
+        <div class="creature">🐛</div>
+    </div>
+
+    <!-- Sparkles -->
+    <div class="sparkles">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+
+    <!-- Clouds -->
+    <div class="clouds">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+
     <!-- Floating particles -->
     <div class="floating-particles">
         <div class="particle"></div>
@@ -323,6 +1246,21 @@
 
     <!-- Main invitation card -->
     <div class="invitation-card">
+        <!-- Ornate corner decorations -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <!-- Vine decorations -->
+        <div class="vine-decoration"></div>
+
+        <!-- Interactive floating hearts -->
+        <div class="interactive-element floating-heart">💕</div>
+        <div class="interactive-element floating-heart">💕</div>
+        <div class="interactive-element floating-heart">💕</div>
+        <div class="interactive-element floating-heart">💕</div>
+
         <!-- Decorative leaf elements -->
         <div class="leaf-decoration top-left">🍃</div>
         <div class="leaf-decoration top-right">🍃</div>
@@ -338,7 +1276,7 @@
 
         <!-- Names -->
         <div class="names">
-            Bana <span class="ampersand">&</span> Davita
+            <span class="name-individual">Bana</span> <span class="ampersand">&</span> <span class="name-individual">Davita</span>
         </div>
 
         <!-- Wedding details -->
@@ -358,5 +1296,220 @@
             Your presence will make our day even more magical.
         </div>
     </div>
+
+    <!-- Music player -->
+    <div class="music-player" onclick="toggleMusic()"></div>
+
+    <!-- JavaScript for interactions -->
+    <script>
+        let isPlaying = false;
+        const musicPlayer = document.querySelector('.music-player');
+
+        function toggleMusic() {
+            isPlaying = !isPlaying;
+            musicPlayer.classList.toggle('playing', isPlaying);
+            
+            if (isPlaying) {
+                // Add gentle sound effect simulation
+                playMagicalSounds();
+            }
+        }
+
+        function playMagicalSounds() {
+            // Create magical particle effect on click
+            createMagicalParticles();
+        }
+
+        function createMagicalParticles() {
+            const colors = ['#9CAF88', '#A8B89A', '#B5C4A7', '#C2D0B4'];
+            
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.right = '60px';
+                particle.style.bottom = '60px';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomY = (Math.random() - 0.5) * 200;
+                
+                particle.style.animation = `magicalParticle 2s ease-out forwards`;
+                particle.style.setProperty('--randomX', randomX + 'px');
+                particle.style.setProperty('--randomY', randomY + 'px');
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 2000);
+            }
+        }
+
+        // Add magical particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes magicalParticle {
+                0% {
+                    transform: translate(0, 0) scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(var(--randomX), var(--randomY)) scale(0);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const creatures = document.querySelectorAll('.creature');
+            const sparkles = document.querySelectorAll('.sparkle');
+            
+            creatures.forEach((creature, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                creature.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            sparkles.forEach((sparkle, index) => {
+                const speed = (index + 1) * 0.3;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                sparkle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Add click effect to names
+        document.querySelector('.names').addEventListener('click', () => {
+            createMagicalParticles();
+        });
+
+        // Generate grass blades dynamically
+        function createGrassField() {
+            const grassField = document.querySelector('.grass-field');
+            const grassCount = 100;
+            
+            for (let i = 0; i < grassCount; i++) {
+                const grass = document.createElement('div');
+                grass.className = 'grass-blade';
+                grass.style.left = Math.random() * 100 + '%';
+                grass.style.height = (Math.random() * 80 + 40) + 'px';
+                grass.style.animationDelay = Math.random() * 4 + 's';
+                grass.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                grassField.appendChild(grass);
+            }
+        }
+
+        // Weather control system
+        let currentWeather = 'sunny';
+        const weatherStates = ['sunny', 'rainy', 'starry'];
+        
+        function changeWeather() {
+            const raindrops = document.querySelector('.rain-drops');
+            const sun = document.querySelector('.sun');
+            const stars = document.querySelector('.stars');
+            
+            // Cycle through weather states
+            const currentIndex = weatherStates.indexOf(currentWeather);
+            const nextIndex = (currentIndex + 1) % weatherStates.length;
+            currentWeather = weatherStates[nextIndex];
+            
+            // Reset all weather elements
+            raindrops.style.opacity = '0';
+            sun.style.opacity = '0';
+            stars.style.opacity = '0';
+            
+            // Show appropriate weather
+            switch(currentWeather) {
+                case 'rainy':
+                    raindrops.style.opacity = '0.6';
+                    break;
+                case 'starry':
+                    stars.style.opacity = '1';
+                    break;
+                case 'sunny':
+                default:
+                    sun.style.opacity = '1';
+                    break;
+            }
+        }
+
+        // Initialize nature animations
+        function initializeNature() {
+            createGrassField();
+            
+            // Change weather every 10 seconds
+            setInterval(changeWeather, 10000);
+            
+            // Add seasonal color changes
+            setTimeout(() => {
+                document.documentElement.style.setProperty('--season-filter', 'sepia(0.3) saturate(1.2)');
+            }, 20000);
+        }
+
+        // Enhanced parallax for nature elements
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            // Parallax for trees
+            const trees = document.querySelectorAll('.tree');
+            trees.forEach((tree, index) => {
+                const speed = (index + 1) * 0.3;
+                const x = (mouseX - 0.5) * speed;
+                tree.style.transform = `translateX(${x}px) scale(${tree.dataset.scale || 1})`;
+            });
+            
+            // Parallax for flowers
+            const flowers = document.querySelectorAll('.flower');
+            flowers.forEach((flower, index) => {
+                const speed = (index + 1) * 0.2;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed * 0.5;
+                flower.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            // Parallax for background layers
+            const mountains = document.querySelector('.mountain-layer');
+            if (mountains) {
+                const x = (mouseX - 0.5) * 20;
+                mountains.style.transform = `translateX(${x}px)`;
+            }
+        });
+
+        // Add wind effect to grass and flowers
+        function addWindEffect() {
+            const grassBlades = document.querySelectorAll('.grass-blade');
+            const flowers = document.querySelectorAll('.flower');
+            
+            grassBlades.forEach((blade, index) => {
+                const windStrength = Math.random() * 3 + 1;
+                blade.style.setProperty('--wind-strength', windStrength + 'deg');
+            });
+            
+            flowers.forEach((flower, index) => {
+                const windStrength = Math.random() * 2 + 1;
+                flower.style.setProperty('--wind-strength', windStrength + 'deg');
+            });
+        }
+
+        // Initialize everything when page loads
+        window.addEventListener('load', () => {
+            initializeNature();
+            
+            // Add periodic wind effects
+            setInterval(addWindEffect, 8000);
+        });
+    </script>
 </body>
 </html>
