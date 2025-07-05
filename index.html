@@ -3,141 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Bana & Davita</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Parisienne&display=swap" rel="stylesheet">
-    
+    <title>Bana & Davita Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles to integrate Google Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #9CAF88 0%, #A8B89A 25%, #B5C4A7 50%, #C2D0B4 75%, #E8F5E8 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
-        .font-parisienne {
-            font-family: 'Parisienne', cursive;
-        }
-        /* Simple animation for fade-in effect */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
-        /* Add a subtle background pattern */
-        body::before {
-            content: '';
+
+        /* Floating particles for Ghibli magic */
+        .floating-particles {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-            opacity: 0.5;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(156, 175, 136, 0.6);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 6s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 7s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            50% { transform: translateY(-10vh) rotate(180deg); opacity: 0.8; }
+        }
+
+        /* Main invitation card */
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(156, 175, 136, 0.3);
+            border: 2px solid rgba(156, 175, 136, 0.2);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #9CAF88, #A8B89A, #B5C4A7, #C2D0B4);
+            border-radius: 25px;
             z-index: -1;
+            filter: blur(15px);
+            opacity: 0.3;
+        }
+
+        /* Header with decorative elements */
+        .header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .decorative-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #9CAF88, transparent);
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .decorative-line::before,
+        .decorative-line::after {
+            content: '❀';
+            position: absolute;
+            color: #9CAF88;
+            font-size: 16px;
+            top: -8px;
+        }
+
+        .decorative-line::before {
+            left: -15px;
+        }
+
+        .decorative-line::after {
+            right: -15px;
+        }
+
+        .invitation-text {
+            font-size: 18px;
+            color: #6B7B5A;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Names styling */
+        .names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            color: #4A5A3A;
+            margin: 30px 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(156, 175, 136, 0.3);
+        }
+
+        .ampersand {
+            font-size: 36px;
+            color: #9CAF88;
+            margin: 0 15px;
+            font-weight: 400;
+        }
+
+        /* Wedding details */
+        .wedding-details {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(156, 175, 136, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(156, 175, 136, 0.2);
+        }
+
+        .date {
+            font-size: 24px;
+            color: #4A5A3A;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .venue {
+            font-size: 20px;
+            color: #6B7B5A;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .location {
+            font-size: 18px;
+            color: #8A9A7A;
+            font-style: italic;
+        }
+
+        /* Ghibli-inspired decorative elements */
+        .leaf-decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.6;
+        }
+
+        .leaf-decoration.top-left {
+            top: 20px;
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+
+        .leaf-decoration.top-right {
+            top: 20px;
+            right: 20px;
+            transform: rotate(15deg);
+        }
+
+        .leaf-decoration.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            transform: rotate(15deg);
+        }
+
+        .leaf-decoration.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            transform: rotate(-15deg);
+        }
+
+        /* Footer message */
+        .footer-message {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #8A9A7A;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .invitation-card {
+                padding: 40px 25px;
+                margin: 10px;
+            }
+            
+            .names {
+                font-size: 36px;
+            }
+            
+            .date {
+                font-size: 20px;
+            }
+            
+            .venue {
+                font-size: 18px;
+            }
+        }
+
+        /* Subtle animations */
+        .invitation-card {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .names {
+            animation: fadeInScale 1.5s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Ghibli-style wind effect */
+        .wind-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wind-line {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(156, 175, 136, 0.3), transparent);
+            animation: windMove 10s infinite linear;
+        }
+
+        .wind-line:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .wind-line:nth-child(2) { left: 30%; animation-delay: 2s; }
+        .wind-line:nth-child(3) { left: 50%; animation-delay: 4s; }
+        .wind-line:nth-child(4) { left: 70%; animation-delay: 6s; }
+        .wind-line:nth-child(5) { left: 90%; animation-delay: 8s; }
+
+        @keyframes windMove {
+            0% { transform: translateY(-100px) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
         }
     </style>
 </head>
-<body class="text-gray-700">
+<body>
+    <!-- Floating particles -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
 
-    <!-- Header & Hero Section -->
-    <header class="bg-cover bg-center h-screen relative" style="background-image: url('https://placehold.co/1200x800/EAE6E1/6B5B4B?text=O+&+L')">
-        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
-        <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center p-4">
-            <h2 class="font-parisienne text-5xl md:text-7xl mb-4 fade-in" style="animation-delay: 0.2s;">Bana & Davita</h2>
-            <p class="text-lg md:text-2xl tracking-widest uppercase fade-in" style="animation-delay: 0.4s;">Are getting married</p>
-            <div class="border-t-2 w-24 my-8 fade-in" style="animation-delay: 0.6s;"></div>
-            <p class="text-xl md:text-3xl font-light fade-in" style="animation-delay: 0.8s;">October 5, 2025</p>
+    <!-- Wind effect -->
+    <div class="wind-effect">
+        <div class="wind-line"></div>
+        <div class="wind-line"></div>
+        <div class="wind-line"></div>
+        <div class="wind-line"></div>
+        <div class="wind-line"></div>
+    </div>
+
+    <!-- Main invitation card -->
+    <div class="invitation-card">
+        <!-- Decorative leaf elements -->
+        <div class="leaf-decoration top-left">🍃</div>
+        <div class="leaf-decoration top-right">🍃</div>
+        <div class="leaf-decoration bottom-left">🍃</div>
+        <div class="leaf-decoration bottom-right">🍃</div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="invitation-text">Together with our families</div>
+            <div class="decorative-line"></div>
+            <div class="invitation-text">We request the honor of your presence</div>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto p-6 md:p-12">
+        <!-- Names -->
+        <div class="names">
+            Bana <span class="ampersand">&</span> Davita
+        </div>
 
-        <!-- Our Story Section -->
-        <section id="story" class="py-16 text-center fade-in">
-            <h3 class="font-parisienne text-5xl text-amber-800 mb-6">Our Story</h3>
-            <p class="text-lg leading-relaxed max-w-2xl mx-auto">
-                Our journey began on a crisp autumn day, brought together by a shared love for old books and coffee. From long conversations that lasted for hours to exploring the world hand-in-hand, our love has grown into a beautiful adventure. We are so excited to start our next chapter together and to share this special moment with you.
-            </p>
-        </section>
+        <!-- Wedding details -->
+        <div class="wedding-details">
+            <div class="date">October 5th, 2025</div>
+            <div class="venue">Gedung Wanita Surakarta</div>
+            <div class="location">Surakarta, Indonesia</div>
+        </div>
 
-        <div class="border-t border-gray-200 my-12"></div>
+        <!-- Decorative separator -->
+        <div class="decorative-line"></div>
 
-        <!-- When & Where Section -->
-        <section id="details" class="py-16 fade-in">
-            <h3 class="font-parisienne text-5xl text-amber-800 mb-12 text-center">When & Where</h3>
-            <div class="flex flex-col md:flex-row gap-12 text-center">
-                <!-- Ceremony -->
-                <div class="flex-1">
-                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-4">The Ceremony</h4>
-                        <p class="text-lg">Saturday, December 12, 2025</p>
-                        <p class="text-lg">2:00 PM</p>
-                        <p class="mt-4 text-gray-600">The Grand Cathedral</p>
-                        <p class="text-gray-600">123 Wedding Lane, Celebration City</p>
-                    </div>
-                </div>
-                <!-- Reception -->
-                <div class="flex-1">
-                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <h4 class="text-2xl font-semibold text-gray-800 mb-4">The Reception</h4>
-                        <p class="text-lg">Saturday, December 12, 2025</p>
-                        <p class="text-lg">5:00 PM</p>
-                        <p class="mt-4 text-gray-600">The Golden Ballroom</p>
-                        <p class="text-gray-600">456 Celebration Avenue, Celebration City</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="border-t border-gray-200 my-12"></div>
-
-        <!-- RSVP Section -->
-        <section id="rsvp" class="py-16 text-center fade-in">
-            <h3 class="font-parisienne text-5xl text-amber-800 mb-6">RSVP</h3>
-            <p class="text-lg mb-8 max-w-xl mx-auto">Please let us know if you can celebrate with us by October 5th, 2025.</p>
-            <form class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
-                <div class="mb-6">
-                    <label for="name" class="block text-left text-gray-700 mb-2">Full Name(s)</label>
-                    <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
-                </div>
-                <div class="mb-6">
-                    <label for="email" class="block text-left text-gray-700 mb-2">Email Address</label>
-                    <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
-                </div>
-                <div class="mb-8">
-                     <p class="block text-left text-gray-700 mb-2">Will you be attending?</p>
-                     <div class="flex justify-start gap-6">
-                        <label class="flex items-center">
-                            <input type="radio" name="attending" value="yes" class="h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
-                            <span class="ml-2">Joyfully Accepts</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input type="radio" name="attending" value="no" class="h-5 w-5 text-amber-600 focus:ring-amber-500 border-gray-300">
-                            <span class="ml-2">Regretfully Declines</span>
-                        </label>
-                     </div>
-                </div>
-                <button type="submit" class="w-full bg-amber-800 text-white font-bold py-3 px-6 rounded-lg hover:bg-amber-900 transition-colors duration-300">
-                    Submit RSVP
-                </button>
-            </form>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-100 py-12 text-center">
-        <p class="font-parisienne text-4xl text-amber-800">Bana & Davita</p>
-        <p class="mt-4 text-gray-600">We can't wait to celebrate with you!</p>
-    </footer>
-
+        <!-- Footer message -->
+        <div class="footer-message">
+            As we begin this beautiful journey together,<br>
+            we invite you to share in our joy and celebration.<br>
+            Your presence will make our day even more magical.
+        </div>
+    </div>
 </body>
 </html>
